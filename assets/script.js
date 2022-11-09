@@ -20,4 +20,39 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  var taskFormEl = $('#task-form');
+  var currentTasks = localStorage.getItem("current-tasks")
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    var descriptionInput = $('input[name="description"]').val();
+    var taskInfo = {
+      taskHour: hourx ,
+      taskDescription: descriptionInput.value,
+    }
+
+
+    localStorage.setItem("current-tasks", currentTasks)
+  }
+
+  // Create a submit event listener on the form element
+  taskFormEl.on('submit', handleFormSubmit);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
