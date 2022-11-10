@@ -21,9 +21,9 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 
-// Adds ID's for each child of class task-form
+  // Adds ID's for each child of class task-form
   var startingHour = 9;
-  $("form.task-form").children().attr("id", "hour-" + startingHour);
+
 
 
   var taskFormEl = $('.task-form');
@@ -39,8 +39,7 @@ $(function () {
     // Push object to array
     taskArray.push(taskInfo);
     // Stringify array and save to local storage
-    localStorage.setItem("current-tasks", JSON.stringify(taskArray));
-
+    localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
 
   // Create a submit event listener on the form element
@@ -61,5 +60,11 @@ $(function () {
   }
 
   init();
+
+
+for (j = 0 ; j < 4; j++) {
+  $("form.task-form").children().attr("id", "hour-" + startingHour);
+$("form").clone().appendTo(".container-lg");
+}
 
 });
