@@ -20,6 +20,12 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+
+// Adds ID's for each child of class task-form
+  var startingHour = 9;
+  $("form.task-form").children().attr("id", "hour-" + startingHour);
+
+
   var taskFormEl = $('.task-form');
   var taskArray = [];
 
@@ -34,14 +40,8 @@ $(function () {
     taskArray.push(taskInfo);
     // Stringify array and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray));
-    
+
   }
-
-
-
-
-
-
 
   // Create a submit event listener on the form element
   taskFormEl.on('submit', handleFormSubmit);
@@ -52,27 +52,14 @@ $(function () {
     if (storedTasks !== null) {
       taskArray = storedTasks;
     }
-    
+    // For the length of the stored array
     for (var i = 0; i < taskArray.length; i++) {
-    console.log(taskArray[i]);
-  }
-  }
 
-  
+      // Test code
+      console.log(taskArray[i]);
+    }
+  }
 
   init();
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 });
