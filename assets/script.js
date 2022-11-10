@@ -23,9 +23,9 @@ $(function () {
   var taskFormEl = $('.task-form');
   var taskArray = [];
 
-
   function handleFormSubmit(event) {
     event.preventDefault();
+
     // Take textarea input and assign it to object
     var descriptionInput = $('textarea[name="descriptionDiv"]').val();
     var taskInfo = {
@@ -37,6 +37,15 @@ $(function () {
     // Stringify array and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray));
   }
+
+
+  $.each(taskFormEl, function () {
+    selected.push($(this).val());
+  });
+
+
+
+
 
   // Create a submit event listener on the form element
   taskFormEl.on('submit', handleFormSubmit);
