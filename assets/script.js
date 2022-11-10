@@ -25,23 +25,19 @@ $(function () {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-
     // Take textarea input and assign it to object
-    var descriptionInput = $('textarea[name="descriptionDiv"]').val();
+    var descriptionInput = $('textarea').val();
     var taskInfo = {
       taskDescription: descriptionInput,
     }
     // Push object to array
     taskArray.push(taskInfo);
-
     // Stringify array and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray));
+    
   }
 
 
-  $.each(taskFormEl, function () {
-    selected.push($(this).val());
-  });
 
 
 
@@ -56,7 +52,13 @@ $(function () {
     if (storedTasks !== null) {
       taskArray = storedTasks;
     }
+    
+    for (var i = 0; i < taskArray.length; i++) {
+    console.log(taskArray[i]);
   }
+  }
+
+  
 
   init();
 
