@@ -70,12 +70,12 @@ $(function () {
     var myTemplateClone = $(myTemplate);
     var container = $('.container-lg');
     
-    var currentHour = startingHour;
+    
 
-    $("form.task-form").children().attr("id", 'hour-' + currentHour);
+    $("form.task-form").children().attr("id", 'hour-' + j);
 
     myTemplateClone.appendTo(container);
-    currentHour++;
+    j++;
   }
 
 
