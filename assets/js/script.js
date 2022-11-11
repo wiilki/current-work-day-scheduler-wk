@@ -22,14 +22,23 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 
 
+  var today = dayjs();
+  var reformatDate = dayjs().format('hA');
+  
+
+
   // Hour row div
   var hourRowDiv = $('#hour-id');
   var hourDisplayDiv = $('#hour-display');
   var hourHtml = document.getElementById("container").innerHTML;
+  var startHour = 9;
 
-  hourRowDiv.attr("id", "hour-" + 9);
-  hourDisplayDiv.text(9 + "AM");
+
+  hourRowDiv.attr("id", "hour-" + startHour);
+  hourDisplayDiv.text(startHour + "AM");
   $('#container').append(hourHtml);
+  startHour++;
+
 
 
   // var taskFormEl = $('.task-form');
