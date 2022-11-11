@@ -23,50 +23,11 @@ $(function () {
 
   // Adds ID's for each child of class task-form
 
-  var taskFormEl = $('.task-form');
-  var taskArray = [];
-
-  // Listener for the save button
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    // Take textarea input and assign it to object
-    var descriptionInput = $('textarea').val();
-    var taskInfo = {
-      taskDescription: descriptionInput,
-    }
-    // Push object to array
-    taskArray.push(taskInfo);
-    // Stringify array and save to local storage
-    localStorage.setItem("current-tasks", JSON.stringify(taskArray))
-  }
-
-
-
-
-  // Create a submit event listener on the form element
-  taskFormEl.on('submit', handleFormSubmit);
-
-  function init() {
-    // Get stored taskArray from localStorage
-    var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
-    if (storedTasks !== null) {
-      taskArray = storedTasks;
-    }
-    // For the length of the stored array
-    for (var i = 0; i < taskArray.length; i++) {
-
-      // Test code
-      console.log(taskArray[i]);
-    }
-  }
-
-  init();
-
-
 
 
   // Hour row div
   var hourRowDiv = $('#hour');
+  var hourDisplayDiv = $('#hour-display')
 
   // Grabs entire template html
   var myTemplate = $("#tasks-temp").html().trim();
@@ -75,14 +36,17 @@ $(function () {
   // Grabs hour display box
   var hourDisplayDiv = $('.col-2');
 
+
+  var startingHour = 9;
   // Appends hour display
   function displayHour() {
-    hourDisplayDiv.appendTo("NINE AM");
+    var displayHour = startingHour
+    hourDisplayDiv.appendTo("NINE AM");/////////////////
   }
 
   // Appends template to hourRowDiv div
   function addInTemp() {
-    hourRowDiv.appendTo(myTemplateClone);
+    myTemplateClone.appendTo(hourRowDiv);
   };
 
 
@@ -92,8 +56,51 @@ $(function () {
   };
 
 
-  // $("form.task-form").children().attr("id", 'hour-' + j);
+    setHourID();
+    displayHour();
+    addInTemp();
+ 
 
+
+
+  // var taskFormEl = $('.task-form');
+  // var taskArray = [];
+
+  // // Listener for the save button
+  // function handleFormSubmit(event) {
+  //   event.preventDefault();
+  //   // Take textarea input and assign it to object
+  //   var descriptionInput = $('textarea').val();
+  //   var taskInfo = {
+  //     taskDescription: descriptionInput,
+  //   }
+  //   // Push object to array
+  //   taskArray.push(taskInfo);
+  //   // Stringify array and save to local storage
+  //   localStorage.setItem("current-tasks", JSON.stringify(taskArray))
+  // }
+
+
+
+
+  // // Create a submit event listener on the form element
+  // taskFormEl.on('submit', handleFormSubmit);
+
+  // function init() {
+  //   // Get stored taskArray from localStorage
+  //   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
+  //   if (storedTasks !== null) {
+  //     taskArray = storedTasks;
+  //   }
+  //   // For the length of the stored array
+  //   for (var i = 0; i < taskArray.length; i++) {
+
+  //     // Test code
+  //     console.log(taskArray[i]);
+  //   }
+  // }
+
+  // init();
 
 
 
