@@ -24,7 +24,7 @@ $(function () {
 
   var today = dayjs();
   var reformatDate = dayjs().format('hA');
-  
+
 
 
   // Hour row div
@@ -36,8 +36,12 @@ $(function () {
 
   hourRowDiv.attr("id", "hour-" + startHour);
   hourDisplayDiv.text(startHour + "AM");
-  $('#container').append(hourHtml);
-  startHour++;
+
+  // Append for each time row
+  for (i = 0; i < 9; i++) {
+    $('#container').append(hourHtml);
+    startHour++;
+  }
 
 
 
