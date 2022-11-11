@@ -61,12 +61,23 @@ $(function () {
 
   init();
 
+  var startingHour = 9;
 
   for (j = 0; j < 9; j++) {
-    $("form.task-form").children().attr("id", "hour-9");
-    $("div.row").children().text(j + "AM");
-    $("form").contents().appendTo(".container-lg");
-    j++
+
+    // Grabs entire template html
+    var myTemplate = $("#tasksTemp").html().trim();
+    var myTemplateClone = $(myTemplate);
+    var container = $('.container-lg');
+    
+    
+
+    $("form.task-form").children().attr("id", 'hour-' + j);
+
+    myTemplateClone.appendTo(container);
+    j++;
   }
+
+
 
 });
