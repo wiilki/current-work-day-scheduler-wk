@@ -23,12 +23,10 @@ $(function () {
 
   // Adds ID's for each child of class task-form
 
-
-
-
   var taskFormEl = $('.task-form');
   var taskArray = [];
 
+  // Listener for the save button
   function handleFormSubmit(event) {
     event.preventDefault();
     // Take textarea input and assign it to object
@@ -41,6 +39,9 @@ $(function () {
     // Stringify array and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
+  
+  
+
 
   // Create a submit event listener on the form element
   taskFormEl.on('submit', handleFormSubmit);
@@ -61,22 +62,21 @@ $(function () {
 
   init();
 
-  var startingHour = 9;
 
-  for (j = 0; j < 9; j++) {
+
+
+
+
 
     // Grabs entire template html
     var myTemplate = $("#tasksTemp").html().trim();
     var myTemplateClone = $(myTemplate);
     var container = $('.container-lg');
-    
-    
-
     $("form.task-form").children().attr("id", 'hour-' + j);
-
     myTemplateClone.appendTo(container);
-    j++;
-  }
+   
+  
+
 
 
 
