@@ -21,39 +21,42 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 
-  // Adds ID's for each child of class task-form
-
-
 
   // Hour row div
-  var hourRowDiv = $('#hour');
-  var hourDisplayDiv = $('#hour-display')
+  var containerDiv = $('#container');
+  var hourRowDiv = $('#hour-id');
+  var hourDisplayDiv = $('#hour-display');
+ 
+
+  hourRowDiv.attr("id", "hour-NINE"); // Need to do multiple times
+  hourDisplayDiv.text('hour-NINE'); // Need to do multiple times
+  hourRowDiv.appendTo(containerDiv); // Only need to do once
 
 
-  // Grabs entire template html
-  var myTemplate = $("#tasks-temp").html().trim();
-  var myTemplateClone = $(myTemplate);
+
+  // // Appends hour display
+  // function displayHour() {
+  //   hourDisplayDiv.text('hour-NINE');
+  // }
+
+  // // Appends template to hourRowDiv div
+  // function addInTemp() {
+  //   myTemplateClone.appendTo(hourRowDiv);
+  // };
+
+  // // Sets hour div ID
+  // function setHourID() {
+  //   hourRowDiv.attr("id", "hour-NINE");
+  // };
 
 
-  // Appends hour display
-  function displayHour() {
-    hourDisplayDiv.text('NINE AM');
-  }
+  // // Appends created/fixed elements to container div
+  // function appendToCont() {
+  //   setHourID();
+  //   displayHour();
+  //   addInTemp();
+  // }
 
-  // Appends template to hourRowDiv div
-  function addInTemp() {
-    myTemplateClone.appendTo(hourRowDiv);
-  };
-
-  // Sets hour div ID
-  function setHourID() {
-    hourRowDiv.attr("id", "NINE AM");
-  };
-
-
-  setHourID();
-  displayHour();
-  addInTemp();
 
 
 
