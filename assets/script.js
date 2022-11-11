@@ -23,42 +23,13 @@ $(function () {
 
 
   // Hour row div
-  var containerDiv = $('#container');
   var hourRowDiv = $('#hour-id');
   var hourDisplayDiv = $('#hour-display');
- 
+  var hourHtml = document.getElementById("container").innerHTML;
 
-  hourRowDiv.attr("id", "hour-NINE"); // Need to do multiple times
-  hourDisplayDiv.text('hour-NINE'); // Need to do multiple times
-  hourRowDiv.appendTo(containerDiv); // Only need to do once
-
-
-
-  // // Appends hour display
-  // function displayHour() {
-  //   hourDisplayDiv.text('hour-NINE');
-  // }
-
-  // // Appends template to hourRowDiv div
-  // function addInTemp() {
-  //   myTemplateClone.appendTo(hourRowDiv);
-  // };
-
-  // // Sets hour div ID
-  // function setHourID() {
-  //   hourRowDiv.attr("id", "hour-NINE");
-  // };
-
-
-  // // Appends created/fixed elements to container div
-  // function appendToCont() {
-  //   setHourID();
-  //   displayHour();
-  //   addInTemp();
-  // }
-
-
-
+  hourRowDiv.attr("id", "hour-" + 9);
+  hourDisplayDiv.text(9 + "AM");
+  $('#container').append(hourHtml);
 
 
   // var taskFormEl = $('.task-form');
