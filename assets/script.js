@@ -69,9 +69,13 @@ $(function () {
 
 
     // Grabs entire template html
-    var myTemplate = $("#tasksTemp").html().trim();
+    var myTemplate = $("#tasks-temp").html().trim();
     var myTemplateClone = $(myTemplate);
-    var container = $('.container-lg');
+    var hourBox = $('#hour');
+
+
+
+    
     $("form.task-form").children().attr("id", 'hour-' + j);
     myTemplateClone.appendTo(container);
    
