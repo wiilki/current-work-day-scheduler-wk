@@ -39,8 +39,8 @@ $(function () {
     // Stringify array and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
-  
-  
+
+
 
 
   // Create a submit event listener on the form element
@@ -65,21 +65,27 @@ $(function () {
 
 
 
+  // Hour row div
+  var hourRowDiv = $('#hour');
+
+  // Grabs entire template html
+  var myTemplate = $("#tasks-temp").html().trim();
+  var myTemplateClone = $(myTemplate);
 
 
-
-    // Grabs entire template html
-    var myTemplate = $("#tasks-temp").html().trim();
-    var myTemplateClone = $(myTemplate);
-    var hourBox = $('#hour');
-
-
-
-    
-    $("form.task-form").children().attr("id", 'hour-' + j);
-    myTemplateClone.appendTo(container);
-   
   
+
+  // Appends template to hourRowDiv div
+  function addInTemp() {
+    hourRowDiv.appendTo(myTemplateClone);
+  };
+
+
+  // Possible use for later
+  // $("form.task-form").children().attr("id", 'hour-' + j);
+
+
+
 
 
 
