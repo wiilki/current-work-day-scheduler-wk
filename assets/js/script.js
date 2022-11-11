@@ -30,18 +30,26 @@ $(function () {
   // Hour row div
   var hourRowDiv = $('#hour-id');
   var hourDisplayDiv = $('#hour-display');
-  var hourHtml = document.getElementById("container").innerHTML;
+  // Whole row div
+  var template = document.getElementById("hour-row-template").innerHTML;
   var startHour = 9;
 
 
-  hourRowDiv.attr("id", "hour-" + startHour);
-  hourDisplayDiv.text(startHour + "AM");
 
-  // Append for each time row
-  for (i = 0; i < 9; i++) {
-    $('#container').append(hourHtml);
-    startHour++;
+  function rewriteTemp() {
+    // Append orginal template to container
+    $('#container').append(template)
+    // Set time for the row
+    hourRowDiv.attr("id", "hour-" + startHour);
+    hourDisplayDiv.text(startHour + "AM");
   }
+
+  for (i = 0; i < 9; i++) {
+    rewriteTemp();
+    startHour++
+  }
+
+
 
 
 
