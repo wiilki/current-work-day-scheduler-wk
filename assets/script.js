@@ -29,19 +29,15 @@ $(function () {
   var hourRowDiv = $('#hour');
   var hourDisplayDiv = $('#hour-display')
 
+
   // Grabs entire template html
   var myTemplate = $("#tasks-temp").html().trim();
   var myTemplateClone = $(myTemplate);
 
-  // Grabs hour display box
-  var hourDisplayDiv = $('.col-2');
 
-
-  var startingHour = 9;
   // Appends hour display
   function displayHour() {
-    var displayHour = startingHour
-    hourDisplayDiv.appendTo("NINE AM");/////////////////
+    hourDisplayDiv.text('NINE AM');
   }
 
   // Appends template to hourRowDiv div
@@ -49,17 +45,16 @@ $(function () {
     myTemplateClone.appendTo(hourRowDiv);
   };
 
-
   // Sets hour div ID
   function setHourID() {
     hourRowDiv.attr("id", "NINE AM");
   };
 
 
-    setHourID();
-    displayHour();
-    addInTemp();
- 
+  setHourID();
+  displayHour();
+  addInTemp();
+
 
 
 
