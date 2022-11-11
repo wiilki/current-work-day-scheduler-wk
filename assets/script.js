@@ -22,7 +22,7 @@ $(function () {
   // TODO: Add code to display the current date in the header of the page.
 
   // Adds ID's for each child of class task-form
-  var startingHour = 9;
+
 
 
 
@@ -62,9 +62,11 @@ $(function () {
   init();
 
 
-for (j = 0 ; j < 4; j++) {
-  $("form.task-form").children().attr("id", "hour-" + startingHour);
-$("form").clone().appendTo(".container-lg");
-}
+  for (j = 0; j < 9; j++) {
+    $("form.task-form").children().attr("id", "hour-9");
+    $("div.row").children().text(j + "AM");
+    $("form").contents().appendTo(".container-lg");
+    j++
+  }
 
 });
