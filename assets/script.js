@@ -72,8 +72,13 @@ $(function () {
   var myTemplate = $("#tasks-temp").html().trim();
   var myTemplateClone = $(myTemplate);
 
+  // Grabs hour display box
+  var hourDisplayDiv = $('.col-2');
 
-  
+  // Appends hour display
+  function displayHour() {
+    hourDisplayDiv.appendTo("NINE AM");
+  }
 
   // Appends template to hourRowDiv div
   function addInTemp() {
@@ -81,7 +86,12 @@ $(function () {
   };
 
 
-  // Possible use for later
+  // Sets hour div ID
+  function setHourID() {
+    hourRowDiv.attr("id", "NINE AM");
+  };
+
+
   // $("form.task-form").children().attr("id", 'hour-' + j);
 
 
