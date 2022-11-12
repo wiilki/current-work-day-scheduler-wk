@@ -48,7 +48,7 @@ $(function () {
 
 
 
-    // FIX THIS //
+    // FIX THIS to use J //
     $('#container div').attr("id", "hour-" + startHour);
     startHour++;
 
