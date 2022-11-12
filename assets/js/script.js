@@ -23,7 +23,8 @@ $(function () {
 
 
   var today = dayjs();
-  var reformatDate = dayjs().format('hA'); var startHour = 9;
+  var reformatDate = dayjs().format('hA');
+  var startHour = 9;
   var template = document.getElementById("hour-row-template").innerHTML;
 
   // Duplicates original template and appends to container
@@ -31,46 +32,32 @@ $(function () {
     $('#container').append(template)
   }
 
-  // Adds hour ID and text to hour row - Only does this for first row. Need to fix
-  function adjustHour() {
-    $('#hour-id').attr("id", "hour-" + startHour);
-    $('#hour-display').text(startHour + "AM")
-    startHour++;
-  }
-
   // Adds template content to container 9 times
   for (i = 0; i < 9; i++) {
     tempToCont();
   };
 
+  // Set id to each section inside container and increments id#
+  $('section').each(function () {
+    this.setAttribute("id", startHour);
+    startHour++
+  });
 
-  for (j =0; j < 9; j++) {
-// Points to hour-ID div
-  var idDiv = $('#container div');
-  var hourDisplay = $('#container div div');
-
-   idDiv[j].setAttribute("id", "hour-" + startHour);
-
-  startHour++;
-}
-
-    // $( "div #hour-id" ).toArray().each( function(div) {
-    //   $('#hour-id').attr("id", "hour-" + startHour);
-    // })
+  var startHour = 9;
+  $('section div').each(function () {
+      this.append(startHour + "AM");
+      startHour++
+    });
 
 
-<<<<<<< HEAD:assets/script.js
-  var startingHour = 9;
-=======
->>>>>>> ef71a0060f42184e111c9539adb8fd7ae513688a:assets/js/script.js
 
-  hourRowDiv.attr("id", "hour-" + startingHour);
-  hourDisplayDiv.text(startingHour + "AM");
 
-  for (i = 0; i < 9; i++) {
-    $('#container').append(hourHtml);
-    startingHour++
-  }
+
+
+
+
+
+
 
   // var taskFormEl = $('.task-form');
   // var taskArray = [];
