@@ -27,10 +27,15 @@ $(function () {
   var hourDisplayDiv = $('#hour-display');
   var hourHtml = document.getElementById("container").innerHTML;
 
-  hourRowDiv.attr("id", "hour-" + 9);
-  hourDisplayDiv.text(9 + "AM");
-  $('#container').append(hourHtml);
+  var startingHour = 9;
 
+  hourRowDiv.attr("id", "hour-" + startingHour);
+  hourDisplayDiv.text(startingHour + "AM");
+
+  for (i = 0; i < 9; i++) {
+    $('#container').append(hourHtml);
+    startingHour++
+  }
 
   // var taskFormEl = $('.task-form');
   // var taskArray = [];
