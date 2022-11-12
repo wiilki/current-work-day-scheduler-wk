@@ -40,6 +40,7 @@ $(function () {
   // Set id to each section inside container and increments id#
   $('section').each(function () {
     this.setAttribute("id", startHour);
+    
     startHour++
   });
 
@@ -50,53 +51,43 @@ $(function () {
     });
 
 
+   
+  var taskFormEl = $('#task-form');
+  var taskArray = [];
+
+  // Listener for the save button
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    // Take textarea input and assign it to object
+    var descriptionInput = $('textarea').val();
+    var taskInfo = {
+      taskDescription: descriptionInput,
+    }
+    // Push object to array
+    taskArray.push(taskInfo);
+    // Stringify array and save to local storage
+    localStorage.setItem("current-tasks", JSON.stringify(taskArray))
+  }
 
 
+  // Create a submit event listener on the form element
+  taskFormEl.on('submit', handleFormSubmit);
 
+  function init() {
+    // Get stored taskArray from localStorage
+    var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
+    if (storedTasks !== null) {
+      taskArray = storedTasks;
+    }
+    // For the length of the stored array
+    for (var i = 0; i < taskArray.length; i++) {
 
+      // Test code
+      console.log(taskArray[i]);
+    }
+  }
 
-
-
-
-
-  // var taskFormEl = $('.task-form');
-  // var taskArray = [];
-
-  // // Listener for the save button
-  // function handleFormSubmit(event) {
-  //   event.preventDefault();
-  //   // Take textarea input and assign it to object
-  //   var descriptionInput = $('textarea').val();
-  //   var taskInfo = {
-  //     taskDescription: descriptionInput,
-  //   }
-  //   // Push object to array
-  //   taskArray.push(taskInfo);
-  //   // Stringify array and save to local storage
-  //   localStorage.setItem("current-tasks", JSON.stringify(taskArray))
-  // }
-
-
-
-
-  // // Create a submit event listener on the form element
-  // taskFormEl.on('submit', handleFormSubmit);
-
-  // function init() {
-  //   // Get stored taskArray from localStorage
-  //   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
-  //   if (storedTasks !== null) {
-  //     taskArray = storedTasks;
-  //   }
-  //   // For the length of the stored array
-  //   for (var i = 0; i < taskArray.length; i++) {
-
-  //     // Test code
-  //     console.log(taskArray[i]);
-  //   }
-  // }
-
-  // init();
+  init();
 
 
 
