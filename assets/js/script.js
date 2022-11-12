@@ -23,30 +23,43 @@ $(function () {
 
 
   var today = dayjs();
-  var reformatDate = dayjs().format('hA');
-
-
-
-  // Hour row div
-  var hourRowDiv = $('#hour-id');
-  var hourDisplayDiv = $('#hour-display');
-  // Whole row div
+  var reformatDate = dayjs().format('hA'); var startHour = 9;
   var template = document.getElementById("hour-row-template").innerHTML;
-  var startHour = 9;
 
-
-
-  function rewriteTemp() {
-    // Append orginal template to container
+  // Duplicates original template and appends to container
+  function tempToCont() {
     $('#container').append(template)
-    // Set time for the row
-    hourRowDiv.attr("id", "hour-" + startHour);
-    hourDisplayDiv.text(startHour + "AM");
   }
 
+  // Adds hour ID and text to hour row - Only does this for first row. Need to fix
+  function adjustHour() {
+    $('#hour-id').attr("id", "hour-" + startHour);
+    $('#hour-display').text(startHour + "AM")
+    startHour++;
+  }
+
+  // Adds template content to container 9 times
   for (i = 0; i < 9; i++) {
-    rewriteTemp();
-    startHour++
+    tempToCont();
+  };
+
+
+  for (j = 0; j < 9; j++) {
+
+
+
+    // FIX THIS //
+    $('#container div').attr("id", "hour-" + startHour);
+    startHour++;
+
+
+
+    // $("li").each(function(){
+    //   alert($(this).text())
+    // });
+
+    // $('#hour-id').attr("id", "hour-" + startHour);
+    // changeID from hour to starting hour
   }
 
 
