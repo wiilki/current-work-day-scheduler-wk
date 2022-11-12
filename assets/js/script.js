@@ -44,24 +44,19 @@ $(function () {
   };
 
 
-  for (j = 0; j < 9; j++) {
+  for (j =0; j < 9; j++) {
+// Points to hour-ID div
+  var idDiv = $('#container div');
+  var hourDisplay = $('#container div div');
 
+   idDiv[j].setAttribute("id", "hour-" + startHour);
 
+  startHour++;
+}
 
-    // FIX THIS to use J //
-    $('#container div').attr("id", "hour-" + startHour);
-    startHour++;
-
-
-
-    // $("li").each(function(){
-    //   alert($(this).text())
-    // });
-
-    // $('#hour-id').attr("id", "hour-" + startHour);
-    // changeID from hour to starting hour
-  }
-
+    // $( "div #hour-id" ).toArray().each( function(div) {
+    //   $('#hour-id').attr("id", "hour-" + startHour);
+    // })
 
 
 
