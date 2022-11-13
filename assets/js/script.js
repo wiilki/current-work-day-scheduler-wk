@@ -3,7 +3,7 @@ $(function () {
 
 
 
-  var today = dayjs();
+  var rightNow = dayjs();
   // var reformatDate = dayjs().format('hA');
 
   var template = document.getElementById("hour-row-template").innerHTML;
@@ -33,7 +33,7 @@ $(function () {
     const d = new Date();
     d.setHours(startHour, 0, 0);
     
-    // Change time display
+    // Change time display format
     if (d.getHours() < 12){
       this.append(d.getHours() + "AM");
     } else if (d.getHours() > 12) {
@@ -41,8 +41,37 @@ $(function () {
     } else {
       this.append(d.getHours() + "PM");
     }
+    // Increment hour
     startHour++;
   });
+
+
+
+
+  // Set startHour back to 9. Add class to rows
+  var startHour = 9;
+  $('section').each(function () {
+    var currentDate = new Date();
+    const d = new Date();
+    d.setHours(startHour, 0, 0);
+    // Compare display hour to currentHour and add class appropriately
+    if (d.getHours() < currentDate){
+      this.classList.add('past');
+    } else if (d.getHours() > currentDate) {
+      this.classList.add('future');
+    } else {
+      this.classList.add('present');
+    }
+
+    // Increment hour
+    startHour++;
+  });
+
+
+
+
+
+
 
 
 
