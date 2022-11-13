@@ -37,7 +37,7 @@ $(function () {
   });
 
 
-  var taskFormEl = $('.task-form');
+  var taskFormEl = $('#container');
   var taskArray = [];
 
   $('section div').each(function () {
@@ -49,42 +49,58 @@ $(function () {
 
 
 
+  // // Listener for the save button
+  // function handleFormSubmit(event) {
+  //   event.preventDefault();
+
+  //Goes through each textarea element. Adds to array, then resets the value of the area
+  // $('textarea').each(function () {
+  //   // Take textarea input and push to array
+  //   var descriptionInput = $('textarea').val();
+  //   taskArray.push(descriptionInput);
+  //   // Clears current textarea before going to next textarea
+  //   $('textarea').val('')
+  // });
+
+  // }
+
+  // // Create a submit event listener on the form element
+  // taskFormEl.on('submit', handleFormSubmit);
+
+
+  $('section div').each(function () {
+
+  });
+
+
+
+
+
+  var taskFormEl = $('.task-form');
+  var taskArray = [];
+
   // Listener for the save button
   function handleFormSubmit(event) {
     event.preventDefault();
 
-    //Goes through each textarea element. Adds to array, then resets the value of the area
-    $('textarea').each(function () {
-      // Take textarea input and push to array
-      var descriptionInput = $('textarea').val();
+
+    $('section').each(function () {
+      var descriptionInput = this.children[1].value;
       taskArray.push(descriptionInput);
-      // Clears current textarea before going to next textarea
-      $('textarea').val('')
     });
 
+    // Stringify array and save to local storage
+    localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
+
+
 
   // Create a submit event listener on the form element
   taskFormEl.on('submit', handleFormSubmit);
 
+
+
   console.log(taskArray)
-
-  // ON CLICK
-
-  // READ INNERHTML OF J=0 TEXTAREA
-  // ADD TO Array
-  // READ INNERHTML OF J=1 TEXTAREA
-  // ADD TO ARRAY
-
-
-
-
-
-
-
-
-
-
 
 
 
