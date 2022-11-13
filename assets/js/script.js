@@ -40,107 +40,22 @@ $(function () {
   var taskFormEl = $('#container');
   var taskArray = [];
 
-  $('section div').each(function () {
-    const d = new Date();
-    d.setHours(startHour, 0, 0);
-    this.append(d);
-    startHour++;
-  });
-
-
-
-  // // Listener for the save button
-  // function handleFormSubmit(event) {
-  //   event.preventDefault();
-
-  //Goes through each textarea element. Adds to array, then resets the value of the area
-  // $('textarea').each(function () {
-  //   // Take textarea input and push to array
-  //   var descriptionInput = $('textarea').val();
-  //   taskArray.push(descriptionInput);
-  //   // Clears current textarea before going to next textarea
-  //   $('textarea').val('')
-  // });
-
-  // }
-
-  // // Create a submit event listener on the form element
-  // taskFormEl.on('submit', handleFormSubmit);
-
-
-  $('section div').each(function () {
-
-  });
-
-
-
-
-
-  var taskFormEl = $('.task-form');
-  var taskArray = [];
-
   // Listener for the save button
   function handleFormSubmit(event) {
     event.preventDefault();
-
-
+    // Clears currently store taskarray from local storage
+    localStorage.clear();
+    // Goes through each
     $('section').each(function () {
       var descriptionInput = this.children[1].value;
       taskArray.push(descriptionInput);
     });
-
-    // Stringify array and save to local storage
+    // Stringify updated taskarray and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
 
-
-
   // Create a submit event listener on the form element
   taskFormEl.on('submit', handleFormSubmit);
-
-
-
-  console.log(taskArray)
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Listener for the save button
-  // function handleFormSubmit(event) {
-
-
-  //   // Stringify array and save to local storage
-  //   localStorage.setItem("current-tasks", JSON.stringify(taskArray))
-  // }
-
-
-  // var taskFormEl = $('.task-form');
-  // var taskArray = [];
-
-  // // Listener for the save button
-  // function handleFormSubmit(event) {
-  //   event.preventDefault();
-  //   // Take textarea input and assign it to object
-  //   var descriptionInput = $('textarea').val();
-  //   var taskInfo = {
-  //     taskDescription: descriptionInput,
-  //   }
-
-  //   // Push object to array
-  //   taskArray.push(taskInfo);
-
-  //   // Stringify array and save to local storage
-  //   localStorage.setItem("current-tasks", JSON.stringify(taskArray))
-  // }
 
 
 
