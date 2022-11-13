@@ -3,6 +3,10 @@ $(function () {
   var template = document.getElementById("hour-row-template").innerHTML;
   var container = $('#container');
   var taskArray = [];
+ // Get stored taskArray from localStorage
+ var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
+
+ console.log(storedTasks)
 
   // Duplicates original template and appends to container
   function tempToCont() {
@@ -13,6 +17,10 @@ $(function () {
   for (i = 0; i < 9; i++) {
     tempToCont();
   };
+
+
+
+
 
   // Set id to each section inside container and increments id#
   var startHour = 9;
@@ -72,30 +80,4 @@ $(function () {
   }
   // Create a submit event listener on the form element
   container.on('submit', handleFormSubmit);
-
-
-
-
-
-  function init() {
-    // Get stored taskArray from localStorage
-    var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
-
-      taskArray = storedTasks;
-
- 
-
-
-    console.log(storedTasks)
-  }
-
-
-
-  init();
-
-
-
-
-
-
 });
