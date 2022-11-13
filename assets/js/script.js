@@ -23,8 +23,8 @@ $(function () {
 
 
   var today = dayjs();
-  var reformatDate = dayjs().format('hA');
-  var startHour = 9;
+  // var reformatDate = dayjs().format('hA');
+
   var template = document.getElementById("hour-row-template").innerHTML;
 
   // Duplicates original template and appends to container
@@ -38,56 +38,77 @@ $(function () {
   };
 
   // Set id to each section inside container and increments id#
-  $('section').each(function () {
-    this.setAttribute("id", startHour);
-    
-    startHour++
+  var startHour = 9;
+  $('form').each(function () {
+    const d = new Date();
+    d.setHours(startHour, 0, 0);
+    this.setAttribute("id", "hour-" + startHour);
+    startHour++;
   });
 
+  // Set startHour back to 9. Append hour displays to rows
   var startHour = 9;
   $('section div').each(function () {
-      this.append(startHour + "AM");
-      startHour++
-    });
+    const d = new Date();
+    d.setHours(startHour, 0, 0);
+  
+    this.append(d);
+    startHour++;
+  });
 
 
-   
-  var taskFormEl = $('#task-form');
-  var taskArray = [];
-
-  // Listener for the save button
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    // Take textarea input and assign it to object
-    var descriptionInput = $('textarea').val();
-    var taskInfo = {
-      taskDescription: descriptionInput,
-    }
-    // Push object to array
-    taskArray.push(taskInfo);
-    // Stringify array and save to local storage
-    localStorage.setItem("current-tasks", JSON.stringify(taskArray))
-  }
 
 
-  // Create a submit event listener on the form element
-  taskFormEl.on('submit', handleFormSubmit);
 
-  function init() {
-    // Get stored taskArray from localStorage
-    var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
-    if (storedTasks !== null) {
-      taskArray = storedTasks;
-    }
-    // For the length of the stored array
-    for (var i = 0; i < taskArray.length; i++) {
 
-      // Test code
-      console.log(taskArray[i]);
-    }
-  }
+  // var startHour = dayjs().set('hour', 9).format('hA');
+  // var displayHour = startHour;
 
-  init();
+  // const d = new Date();
+  // d.setHours(9, 0, 0);
+ 
+
+
+
+
+  // var taskFormEl = $('.task-form');
+  // var taskArray = [];
+
+  // // Listener for the save button
+  // function handleFormSubmit(event) {
+  //   event.preventDefault();
+  //   // Take textarea input and assign it to object
+  //   var descriptionInput = $('textarea').val();
+  //   var taskInfo = {
+  //     taskDescription: descriptionInput,
+  //   }
+  //   // Push object to array
+  //   taskArray.push(taskInfo);
+  //   // Stringify array and save to local storage
+  //   localStorage.setItem("current-tasks", JSON.stringify(taskArray))
+  // }
+
+
+
+
+  // // Create a submit event listener on the form element
+  // taskFormEl.on('submit', handleFormSubmit);
+
+  // function init() {
+  //   // Get stored taskArray from localStorage
+  //   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
+  //   if (storedTasks !== null) {
+  //     taskArray = storedTasks;
+  //   }
+  //   // For the length of the stored array
+  //   for (var i = 0; i < taskArray.length; i++) {
+
+  //     // Test code
+  //     console.log(taskArray[i]);
+  //   }
+  // }
+
+  // init();
 
 
 
