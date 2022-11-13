@@ -1,12 +1,8 @@
 
 $(function () {
-
-
-
-  var rightNow = dayjs();
-  // var reformatDate = dayjs().format('hA');
-
   var template = document.getElementById("hour-row-template").innerHTML;
+  var container = $('#container');
+  var taskArray = [];
 
   // Duplicates original template and appends to container
   function tempToCont() {
@@ -41,12 +37,8 @@ $(function () {
     } else {
       this.append(d.getHours() + "PM");
     }
-    // Increment hour
     startHour++;
   });
-
-
-
 
   // Set startHour back to 9. Add class to rows
   var startHour = 9;
@@ -62,29 +54,15 @@ $(function () {
     } else {
       this.classList.add('present');
     }
-
-    // Increment hour
     startHour++;
   });
 
 
-
-
-
-
-
-
-
-  var container = $('#container');
-  var taskArray = [];
-
   // Listener for the save button
   function handleFormSubmit(event) {
-
     // Clears currently store taskarray from local storage
     localStorage.clear();
-
-    // Goes through each
+    // Goes through each description input element and adds to array
     $('section').each(function () {
       var descriptionInput = this.children[1].value;
       taskArray.push(descriptionInput);
@@ -92,7 +70,6 @@ $(function () {
     // Stringify updated taskarray and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
-
   // Create a submit event listener on the form element
   container.on('submit', handleFormSubmit);
 
@@ -100,24 +77,21 @@ $(function () {
 
 
 
-  // function init() {
-  //   // Get stored taskArray from localStorage
-  //   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
+  function init() {
+    // Get stored taskArray from localStorage
+    var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
 
-  //     taskArray = storedTasks;
+      taskArray = storedTasks;
 
-  //   // // For the length of the stored array
-  //   // for (var i = 0; i < taskArray.length; i++) {
+ 
 
-  //   //   // Test code
-  //   //   $('textarea').append(taskArray[i]);
-  //   // }
-  //   console.log(storedTasks)
-  // }
+
+    console.log(storedTasks)
+  }
 
 
 
-  // init();
+  init();
 
 
 
