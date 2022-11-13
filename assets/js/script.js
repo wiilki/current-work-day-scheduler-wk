@@ -3,10 +3,14 @@ $(function () {
   var template = document.getElementById("hour-row-template").innerHTML;
   var container = $('#container');
   var taskArray = [];
+  var startHour = 9;
+  var dayRange = 9;
   // Get stored taskArray from localStorage
   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
 
-  console.log(storedTasks)
+  function resetHour() {
+    startHour = 9;
+  }
 
   // Duplicates original template and appends to container
   function tempToCont() {
@@ -14,19 +18,19 @@ $(function () {
   }
 
   // Adds template content to container 9 times
-  for (i = 0; i < 9; i++) {
+  for (i = 0; i < dayRange; i++) {
     tempToCont();
   };
 
   // Adds each value of storedTasks back to corresponding textarea
-  for (j = 0; j < 9; j++) {
+  for (j = 0; j < dayRange; j++) {
     var containerEl = document.getElementById("container");
     if (storedTasks){
     containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
   }};
 
   // Set id to each section inside container and increments id#
-  var startHour = 9;
+  resetHour();
   $('form').each(function () {
     const d = new Date();
     d.setHours(startHour, 0, 0);
@@ -35,7 +39,7 @@ $(function () {
   });
 
   // Set startHour back to 9. Append hour displays to rows
-  var startHour = 9;
+  resetHour();
   $('section div').each(function () {
     const d = new Date();
     d.setHours(startHour, 0, 0);
@@ -52,7 +56,7 @@ $(function () {
   });
 
   // Set startHour back to 9. Add class to rows
-  var startHour = 9;
+  resetHour();
   $('section').each(function () {
     var currentDate = new Date();
     const d = new Date();
@@ -67,8 +71,6 @@ $(function () {
     }
     startHour++;
   });
-
-
 
   // Listener for the save button
   function handleFormSubmit(event) {
