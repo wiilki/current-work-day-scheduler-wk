@@ -21,8 +21,9 @@ $(function () {
   // Adds each value of storedTasks back to corresponding textarea
   for (j = 0; j < 9; j++) {
     var containerEl = document.getElementById("container");
+    if (storedTasks){
     containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
-  };
+  }};
 
   // Set id to each section inside container and increments id#
   var startHour = 9;
@@ -66,6 +67,8 @@ $(function () {
     }
     startHour++;
   });
+
+
 
   // Listener for the save button
   function handleFormSubmit(event) {
