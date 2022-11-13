@@ -3,10 +3,10 @@ $(function () {
   var template = document.getElementById("hour-row-template").innerHTML;
   var container = $('#container');
   var taskArray = [];
- // Get stored taskArray from localStorage
- var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
+  // Get stored taskArray from localStorage
+  var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
 
- console.log(storedTasks)
+  console.log(storedTasks)
 
   // Duplicates original template and appends to container
   function tempToCont() {
@@ -18,9 +18,11 @@ $(function () {
     tempToCont();
   };
 
-
-
-
+  // Adds each value of storedTasks back to corresponding textarea
+  for (j = 0; j < 9; j++) {
+    var containerEl = document.getElementById("container");
+    containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
+  };
 
   // Set id to each section inside container and increments id#
   var startHour = 9;
@@ -36,12 +38,12 @@ $(function () {
   $('section div').each(function () {
     const d = new Date();
     d.setHours(startHour, 0, 0);
-    
+
     // Change time display format
-    if (d.getHours() < 12){
+    if (d.getHours() < 12) {
       this.append(d.getHours() + "AM");
     } else if (d.getHours() > 12) {
-      this.append(d.getHours()-12 + "PM");
+      this.append(d.getHours() - 12 + "PM");
     } else {
       this.append(d.getHours() + "PM");
     }
@@ -55,7 +57,7 @@ $(function () {
     const d = new Date();
     d.setHours(startHour, 0, 0);
     // Compare display hour to currentHour and add class appropriately
-    if (d.getHours() < currentDate){
+    if (d.getHours() < currentDate) {
       this.classList.add('past');
     } else if (d.getHours() > currentDate) {
       this.classList.add('future');
@@ -64,7 +66,6 @@ $(function () {
     }
     startHour++;
   });
-
 
   // Listener for the save button
   function handleFormSubmit(event) {
