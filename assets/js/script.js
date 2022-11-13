@@ -32,19 +32,29 @@ $(function () {
   $('section div').each(function () {
     const d = new Date();
     d.setHours(startHour, 0, 0);
-    this.append(d);
+    
+    // Change time display
+    if (d.getHours() < 12){
+      this.append(d.getHours() + "AM");
+    } else if (d.getHours() > 12) {
+      this.append(d.getHours()-12 + "PM");
+    } else {
+      this.append(d.getHours() + "PM");
+    }
     startHour++;
   });
 
 
-  var taskFormEl = $('#container');
+
+  var container = $('#container');
   var taskArray = [];
 
   // Listener for the save button
   function handleFormSubmit(event) {
-    
+
     // Clears currently store taskarray from local storage
     localStorage.clear();
+
     // Goes through each
     $('section').each(function () {
       var descriptionInput = this.children[1].value;
@@ -55,26 +65,28 @@ $(function () {
   }
 
   // Create a submit event listener on the form element
-  taskFormEl.on('submit', handleFormSubmit);
+  container.on('submit', handleFormSubmit);
 
 
 
-  // Create a submit event listener on the form element
-  // taskFormEl.on('submit', handleFormSubmit);
+
 
   // function init() {
   //   // Get stored taskArray from localStorage
   //   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
-  //   if (storedTasks !== null) {
-  //     taskArray = storedTasks;
-  //   }
-  //   // For the length of the stored array
-  //   for (var i = 0; i < taskArray.length; i++) {
 
-  //     // Test code
-  //     $('textarea').append(taskArray[i]);
-  //   }
+  //     taskArray = storedTasks;
+
+  //   // // For the length of the stored array
+  //   // for (var i = 0; i < taskArray.length; i++) {
+
+  //   //   // Test code
+  //   //   $('textarea').append(taskArray[i]);
+  //   // }
+  //   console.log(storedTasks)
   // }
+
+
 
   // init();
 
