@@ -42,7 +42,7 @@ $(function () {
 
   // Listener for the save button
   function handleFormSubmit(event) {
-    event.preventDefault();
+    
     // Clears currently store taskarray from local storage
     localStorage.clear();
     // Goes through each
