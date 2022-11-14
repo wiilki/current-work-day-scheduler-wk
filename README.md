@@ -17,7 +17,7 @@ Enjoy!
 
 ## Installation
 
- * To deploy application, go to [My Github Project](https://wiilki.github.io/daily-work-planner-wk/)
+ * To deploy application, go to [My Github Project](https://wiilki.github.io/current-work-day-scheduler-wk/)
 
 ## Usage
 
