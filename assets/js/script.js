@@ -4,6 +4,7 @@ $(function () {
   var taskArray = [];
   var startHour = 9;
   var dayRange = 9;
+ 
   // Today's Date
   var today = dayjs();
   // Get stored taskArray from localStorage
@@ -28,16 +29,24 @@ $(function () {
   // Adds each value of storedTasks back to corresponding textarea
   function renderArray() {
     for (j = 0; j < dayRange; j++) {
+      taskArray.length = dayRange;
       var containerEl = document.getElementById("container");
+      // If stored tasks exists...
       if (storedTasks) {
-        // Have to point to children[j+1] because <template> would be children[j]
-        containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
-      }
+        // if stored task at index j is blank then return ""
+        if (storedTasks[j] === null) {
+          containerEl.children[j + 1].children[0].children[1].append("")
+        } else {
+          // if stored task at index j is not blank, add to rendered array
+          // Have to point to children[j+1] because <template> would be children[j]
+          containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
+        }
+      };
     };
   }
 
   // Set id to each section inside container and increments id#
-  function setFormID () {
+  function setFormID() {
     resetHour();
     $('form').each(function () {
       const hourEl = new Date();
@@ -47,14 +56,14 @@ $(function () {
     });
   }
 
-    // Adds unique IDs to each textarea element
-    function setTextAreaID() {
-      resetHour();
-      $('textarea').each(function () {
-        this.setAttribute("id", "hour-" + startHour);
-        startHour++;
-      });
-    }
+  // Adds unique IDs to each textarea element
+  function setTextAreaID() {
+    resetHour();
+    $('textarea').each(function () {
+      this.setAttribute("id", "hour-" + startHour);
+      startHour++;
+    });
+  }
 
   // Append hour displays to rows
   function displayHours() {
@@ -102,14 +111,8 @@ $(function () {
     // Use ID to create matching format string for textarea ID
     var nameBreakdown = "hour-" + sectionID;
     var descriptionInput = $('#' + nameBreakdown).val();
-    // Clears currently stored taskarray from local storage
-    localStorage.clear();
-    // Clears current taskArray value
-    taskArray = [];
-    taskArray.length = dayRange;
     // Saves description input at specific index
     taskArray[sectionID - 9] = descriptionInput;
-
     // Stringify updated taskarray and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
