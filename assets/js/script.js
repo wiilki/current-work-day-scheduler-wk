@@ -18,15 +18,11 @@ $(function () {
     startHour = 9;
   }
 
-  // Duplicates original template and appends to container
-  function tempToCont() {
-    $('#container').append(template)
-  }
-
   // Adds template content to container 9 times
   function addTemplate() {
+    // Duplicates original template and appends to container
     for (i = 0; i < dayRange; i++) {
-      tempToCont();
+      $('#container').append(template);
     };
   }
 
@@ -119,4 +115,3 @@ $(function () {
   // Create a submit event listener on the form element
   container.on('submit', handleFormSubmit);
 });
-
