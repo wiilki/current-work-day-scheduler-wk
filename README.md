@@ -8,8 +8,6 @@ The most challenging part of this project was the use of DOM manipulation. I pro
 
 Once I was finally able to duplicate the HTML in my JS, the rest of the project wasn't too bad. I was able to add the event listener fairly easy. Figuring out how to get the tasks to store to local storage correctly was challenging but I am very happy with my solution. 
 
-I would've liked to showcase dayJS() a little more. But I found it difficult to use when comparing to hour rows and was unable to figure out the proper syntax to make it work. I ended up using vanilla JS to create all the time elements but I used JQuery to append elements and setAttributes.
-
 Although I spent more time planning ahead for this project, it did not prepare me for the amount of syntax issues I came accross. I spent hours re-writing and re-organinizing single parts of my code only to find the simplest solutions. I tend want to look at the bigger picture, but I learned from this project that taking it one small piece of code at a time would likely save me hours of testing and re-writing in the future.
 
 This project was tough but I enjoyed it very much.
