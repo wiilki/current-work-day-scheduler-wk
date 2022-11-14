@@ -8,6 +8,11 @@ $(function () {
   // Get stored taskArray from localStorage
   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
 
+
+  var today = dayjs();
+  // Add today's date to header
+$('#currentDay').text(today.format('dddd, MMMM D'));
+
   function resetHour() {
     startHour = 9;
   }
@@ -55,16 +60,17 @@ $(function () {
     startHour++;
   });
 
+  
   // Set startHour back to 9. Add class to rows
   resetHour();
   $('section').each(function () {
-    var currentDate = new Date();
+    var time = dayjs().format('h');
     const d = new Date();
     d.setHours(startHour, 0, 0);
     // Compare display hour to currentHour and add class appropriately
-    if (d.getHours() < currentDate) {
+    if (d.getHours() < time) {
       this.classList.add('past');
-    } else if (d.getHours() > currentDate) {
+    } else if (d.getHours() > time) {
       this.classList.add('future');
     } else {
       this.classList.add('present');
@@ -76,7 +82,7 @@ $(function () {
   function handleFormSubmit(event) {
     // Clears currently store taskarray from local storage
     localStorage.clear();
-    // Goes through each description input element and adds to array
+    // Goes through each description input element and adds to array even if text is blank
     $('section').each(function () {
       var descriptionInput = this.children[1].value;
       taskArray.push(descriptionInput);
