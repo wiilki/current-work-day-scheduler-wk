@@ -15,7 +15,7 @@ $(function () {
 
   // Adds template content to container 9 times
   function addTemplate() {
-    // Duplicates original template and appends to container
+    // Duplicates original template and appends to container for the length of dayRange
     for (i = 0; i < dayRange; i++) {
       $('#container').append(template);
     };
@@ -28,12 +28,12 @@ $(function () {
       var containerEl = document.getElementById("container");
       // If stored tasks exists...
       if (storedTasks) {
-        // if stored task at index j is blank then return ""
+        // if stored task at index j is null then return ""
         if (storedTasks[j] === null) {
+          // Have to point to children[j+1] because children[j] would point to <template> tag line
           containerEl.children[j + 1].children[0].children[1].append("")
         } else {
-          // if stored task at index j is not blank, add to rendered array
-          // Have to point to children[j+1] because <template> would be children[j]
+          // if stored task at index j is not blank, add to storedTasks array at index j
           containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
         }
       };
