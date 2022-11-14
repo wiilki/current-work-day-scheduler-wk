@@ -2,7 +2,7 @@ $(function () {
   var container = $('#container');
   var taskArray = [];
   var startHour = 9;
-  var dayRange = 23;
+  var dayRange = 9;
   var today = dayjs();
   var template = document.getElementById("hour-row-template").innerHTML;
   // Get stored taskArray from localStorage
@@ -28,7 +28,7 @@ $(function () {
       var containerEl = document.getElementById("container");
       // If stored tasks exists...
       if (storedTasks) {
-        // if stored task at index j is null then return ""
+        // if stored task at index j is null or undefined then return ""
         if (storedTasks[j] === null || storedTasks[j] === undefined) {
           // Have to point to children[j+1] because children[j] would point to <template> tag line
           containerEl.children[j + 1].children[0].children[1].append("")
