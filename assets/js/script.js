@@ -4,7 +4,7 @@ $(function () {
   var taskArray = [];
   var startHour = 9;
   var dayRange = 9;
- 
+
   // Today's Date
   var today = dayjs();
   // Get stored taskArray from localStorage
@@ -49,8 +49,7 @@ $(function () {
   function setFormID() {
     resetHour();
     $('form').each(function () {
-      const hourEl = new Date();
-      hourEl.setHours(startHour);
+      var compareHour = dayjs().hour(startHour);
       this.setAttribute("id", startHour);
       startHour++;
     });
@@ -87,13 +86,12 @@ $(function () {
   function addTimeClass() {
     resetHour();
     $('section').each(function () {
-      const hourEl = new Date();
-      hourEl.setHours(startHour);
-      var today = new Date();
+      var compareHour = dayjs().hour(startHour);
+      var rightNow = dayjs();
       // Compare display hour to currentHour and add class appropriately
-      if (hourEl < today) {
+      if (compareHour < rightNow) {
         this.classList.add('past');
-      } else if (hourEl > today) {
+      } else if (compareHour > rightNow) {
         this.classList.add('future');
       } else {
         this.classList.add('present');
