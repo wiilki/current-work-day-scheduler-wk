@@ -88,36 +88,25 @@ $(function () {
     });
   }
 
-  // Stringify updated taskarray and save to local storage
-  function storeStorage() {
-    localStorage.setItem("current-tasks", JSON.stringify(taskArray))
-  }
-
-  // Goes through each description input element and adds to array even if text is blank. Array should always be number of hour row divs
-  function addToArray() {
+  // Function to update current array and stored array
+  function updateArrays() {
+    // Clears currently stored taskarray from local storage
+    localStorage.clear();
+    // Clears current taskArray value
+    taskArray = [];
+    // Goes through each description input element and adds to array even if text is blank. Array should always be number of hour row divs
     $('section').each(function () {
       var descriptionInput = this.children[1].value;
       taskArray.push(descriptionInput);
     });
-  }
-
-  // Clears currently stored taskarray from local storage
-  function clearStorage() {
-    localStorage.clear();
-  }
-
-  // Clears current taskArray value
-  function clearArray() {
-    taskArray = [];
+    // Stringify updated taskarray and save to local storage
+    localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
 
   // Listener for the save button
   function handleFormSubmit(event) {
     event.preventDefault();
-    clearStorage();
-    clearArray();
-    addToArray();
-    storeStorage();
+    updateArrays();
   }
 
   // Calls all functions to set up hour row divs
