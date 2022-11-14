@@ -30,6 +30,7 @@ $(function () {
     for (j = 0; j < dayRange; j++) {
       var containerEl = document.getElementById("container");
       if (storedTasks) {
+        // Have to point to children[j+1] because <template> would be children[j]
         containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
       }
     };
