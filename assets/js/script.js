@@ -13,6 +13,7 @@ $(function () {
   // Add today's date to header
   $('#currentDay').text(today.format('dddd, MMMM D'));
 
+  // Resets start hour back to 9
   function resetHour() {
     startHour = 9;
   }
@@ -33,6 +34,7 @@ $(function () {
     if (storedTasks) {
       containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
     }
+
   };
 
   // Set id to each section inside container and increments id#
@@ -80,10 +82,10 @@ $(function () {
   });
 
   // Listener for the save button
-  function handleFormSubmit(event) {
-    // Clears currently store taskarray from local storage
+  function handleFormSubmit() {
+    // Clears currently stored taskarray from local storage
     localStorage.clear();
-    // Goes through each description input element and adds to array even if text is blank
+    // Goes through each description input element and adds to array even if text is blank. Array should always be number of hour row divs
     $('section').each(function () {
       var descriptionInput = this.children[1].value;
       taskArray.push(descriptionInput);
