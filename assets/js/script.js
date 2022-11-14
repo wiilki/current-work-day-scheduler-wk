@@ -8,10 +8,10 @@ $(function () {
   // Get stored taskArray from localStorage
   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
 
-
+  // Today's Date
   var today = dayjs();
   // Add today's date to header
-$('#currentDay').text(today.format('dddd, MMMM D'));
+  $('#currentDay').text(today.format('dddd, MMMM D'));
 
   function resetHour() {
     startHour = 9;
@@ -30,15 +30,16 @@ $('#currentDay').text(today.format('dddd, MMMM D'));
   // Adds each value of storedTasks back to corresponding textarea
   for (j = 0; j < dayRange; j++) {
     var containerEl = document.getElementById("container");
-    if (storedTasks){
-    containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
-  }};
+    if (storedTasks) {
+      containerEl.children[j + 1].children[0].children[1].append(storedTasks[j])
+    }
+  };
 
   // Set id to each section inside container and increments id#
   resetHour();
   $('form').each(function () {
-    const d = new Date();
-    d.setHours(startHour, 0, 0);
+    const hourEl = new Date();
+    hourEl.setHours(startHour);
     this.setAttribute("id", "hour-" + startHour);
     startHour++;
   });
@@ -46,31 +47,31 @@ $('#currentDay').text(today.format('dddd, MMMM D'));
   // Set startHour back to 9. Append hour displays to rows
   resetHour();
   $('section div').each(function () {
-    const d = new Date();
-    d.setHours(startHour, 0, 0);
+    const hourEl = new Date();
+    hourEl.setHours(startHour);
 
     // Change time display format
-    if (d.getHours() < 12) {
-      this.append(d.getHours() + "AM");
-    } else if (d.getHours() > 12) {
-      this.append(d.getHours() - 12 + "PM");
+    if (hourEl.getHours() < 12) {
+      this.append(hourEl.getHours() + "AM");
+    } else if (hourEl.getHours() > 12) {
+      this.append(hourEl.getHours() - 12 + "PM");
     } else {
-      this.append(d.getHours() + "PM");
+      this.append(hourEl.getHours() + "PM");
     }
     startHour++;
   });
 
-  
   // Set startHour back to 9. Add class to rows
   resetHour();
   $('section').each(function () {
-    var time = dayjs().format('h');
-    const d = new Date();
-    d.setHours(startHour, 0, 0);
+    const hourEl = new Date();
+    hourEl.setHours(startHour);
+    var today = new Date();
+
     // Compare display hour to currentHour and add class appropriately
-    if (d.getHours() < time) {
+    if (hourEl < today) {
       this.classList.add('past');
-    } else if (d.getHours() > time) {
+    } else if (hourEl > today) {
       this.classList.add('future');
     } else {
       this.classList.add('present');
