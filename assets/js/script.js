@@ -37,17 +37,26 @@ $(function () {
   }
 
   // Set id to each section inside container and increments id#
-  function setIds() {
+  function setFormID () {
     resetHour();
     $('form').each(function () {
       const hourEl = new Date();
       hourEl.setHours(startHour);
-      this.setAttribute("id", "hour-" + startHour);
+      this.setAttribute("id", startHour);
       startHour++;
     });
   }
 
-  // Set startHour back to 9. Append hour displays to rows
+    // Adds unique IDs to each textarea element
+    function setTextAreaID() {
+      resetHour();
+      $('textarea').each(function () {
+        this.setAttribute("id", "hour-" + startHour);
+        startHour++;
+      });
+    }
+
+  // Append hour displays to rows
   function displayHours() {
     resetHour();
     $('section div').each(function () {
@@ -65,8 +74,8 @@ $(function () {
     });
   }
 
-  // Set startHour back to 9. Add class to rows
-  function addClass() {
+  // Add's timeblock class to each row
+  function addTimeClass() {
     resetHour();
     $('section').each(function () {
       const hourEl = new Date();
@@ -84,33 +93,34 @@ $(function () {
     });
   }
 
-  // Function to update current array and stored array
-  function updateArrays() {
+  // Listener for the save button
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    var btnClicked = $(event.target);
+    // Grabs ID of form
+    var sectionID = btnClicked.attr('id')
+    // Use ID to create matching format string for textarea ID
+    var nameBreakdown = "hour-" + sectionID;
+    var descriptionInput = $('#' + nameBreakdown).val();
     // Clears currently stored taskarray from local storage
     localStorage.clear();
     // Clears current taskArray value
     taskArray = [];
-    // Goes through each description input element and adds to array even if text is blank. Array should always be number of hour row divs
-    $('section').each(function () {
-      var descriptionInput = this.children[1].value;
-      taskArray.push(descriptionInput);
-    });
+    taskArray.length = dayRange;
+    // Saves description input at specific index
+    taskArray[sectionID - 9] = descriptionInput;
+
     // Stringify updated taskarray and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray))
-  }
-
-  // Listener for the save button
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    updateArrays();
   }
 
   // Calls all functions to set up hour row divs
   addTemplate();
   renderArray();
-  setIds();
+  setFormID();
+  setTextAreaID();
   displayHours();
-  addClass();
+  addTimeClass();
 
   // Create a submit event listener on the form element
   container.on('submit', handleFormSubmit);
