@@ -49,7 +49,7 @@ $(function () {
   function setFormID() {
     resetHour();
     $('form').each(function () {
-      var compareHour = dayjs().hour(startHour);
+      var hourDisplayed = dayjs().hour(startHour);
       this.setAttribute("id", startHour);
       startHour++;
     });
@@ -68,16 +68,8 @@ $(function () {
   function displayHours() {
     resetHour();
     $('section div').each(function () {
-      const hourEl = new Date();
-      hourEl.setHours(startHour);
-      // Change time display format
-      if (hourEl.getHours() < 12) {
-        this.append(hourEl.getHours() + "AM");
-      } else if (hourEl.getHours() > 12) {
-        this.append(hourEl.getHours() - 12 + "PM");
-      } else {
-        this.append(hourEl.getHours() + "PM");
-      }
+      var hourDisplayed = dayjs().hour(startHour)
+      this.append(hourDisplayed.format('hA'))
       startHour++;
     });
   }
@@ -86,12 +78,12 @@ $(function () {
   function addTimeClass() {
     resetHour();
     $('section').each(function () {
-      var compareHour = dayjs().hour(startHour);
+      var hourDisplayed = dayjs().hour(startHour);
       var rightNow = dayjs();
       // Compare display hour to currentHour and add class appropriately
-      if (compareHour < rightNow) {
+      if (hourDisplayed < rightNow) {
         this.classList.add('past');
-      } else if (compareHour > rightNow) {
+      } else if (hourDisplayed > rightNow) {
         this.classList.add('future');
       } else {
         this.classList.add('present');
