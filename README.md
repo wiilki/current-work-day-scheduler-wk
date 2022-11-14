@@ -1,4 +1,4 @@
-# timed-javascript-quiz-wk
+# current-work-day-scheduler-wk
 
 ## Description
 
