@@ -1,17 +1,12 @@
 $(function () {
-  var template = document.getElementById("hour-row-template").innerHTML;
   var container = $('#container');
   var taskArray = [];
   var startHour = 9;
   var dayRange = 9;
   var today = dayjs();
+  var template = document.getElementById("hour-row-template").innerHTML;
   // Get stored taskArray from localStorage
   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
-  // Sets current taskArray value to equal values pulled from storage
-  taskArray = storedTasks
-
-  // Add today's date to header
-  $('#currentDay').text(today.format('dddd, MMMM D'));
 
   // Resets start hour back to 9
   function resetHour() {
@@ -106,6 +101,14 @@ $(function () {
     // Stringify updated taskarray and save to local storage
     localStorage.setItem("current-tasks", JSON.stringify(taskArray))
   }
+
+  // Add today's date to header
+  $('#currentDay').text(today.format('dddd, MMMM D'));
+
+  // Sets current taskArray value to equal values pulled from storage
+  if (storedTasks) {
+    taskArray = storedTasks
+  };
 
   // Calls all functions to set up hour row divs
   addTemplate();
