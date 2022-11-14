@@ -9,7 +9,6 @@ $(function () {
   // Get stored taskArray from localStorage
   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
 
-
   // Add today's date to header
   $('#currentDay').text(today.format('dddd, MMMM D'));
 
