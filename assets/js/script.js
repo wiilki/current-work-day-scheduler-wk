@@ -4,11 +4,11 @@ $(function () {
   var taskArray = [];
   var startHour = 9;
   var dayRange = 9;
-
-  // Today's Date
   var today = dayjs();
   // Get stored taskArray from localStorage
   var storedTasks = JSON.parse(localStorage.getItem("current-tasks"));
+  // Sets current taskArray value to equal values pulled from storage
+  taskArray = storedTasks
 
   // Add today's date to header
   $('#currentDay').text(today.format('dddd, MMMM D'));
@@ -109,9 +109,9 @@ $(function () {
 
   // Calls all functions to set up hour row divs
   addTemplate();
-  renderArray();
   setFormID();
   setTextAreaID();
+  renderArray();
   displayHours();
   addTimeClass();
 
