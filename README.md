@@ -6,7 +6,7 @@ This is a work day planner for the current day! I created this project to showca
 
 The most challenging part of this project was the use of DOM manipulation. I probably spent about 90% of my time trying to duplicate the body of HTML using Javascript. Also, my lack of ability to recognize differences between methods, selectors, values made this challenge much more difficult than it could have been.
 
-Once I was finally able to duplicate the HTML in my JS, the rest of the project wasn't too bad. I was able to add the event listener fairly easy. Figuring out how to get the tasks to store to local storage correctly and finding the correct syntax to compare dayJS elements was tricky. 
+Once I was finally able to duplicate the HTML in my JS, the rest of the project wasn't too bad. I was able to add the event listener fairly easy. Figuring out how to get the tasks to store to local storage correctly and finding the correct syntax to compare dayJS elements were a litle tricky. 
 
 Although I spent more time planning ahead for this project, it did not prepare me for the amount of syntax issues I came accross. I spent hours re-writing and re-organinizing single parts of my code only to find the simplest solutions. I tend want to look at the bigger picture, but I learned from this project that taking it one small piece of code at a time would likely save me hours of testing and re-writing in the future.
 
