@@ -104,6 +104,7 @@
   function persist(showToast) {
     window.clearTimeout(saveTimer);
     if (!writeStorage(Core.DAY_PREFIX + selectedDate, JSON.stringify(currentDay))) {
+      storageWorks = false;
       setStatus('Storage unavailable — changes are not saved', 'error');
       if (showToast) toast('Could not save. Check browser storage settings.', false);
       return false;
@@ -409,6 +410,7 @@
       render();
     }
     if (event.key === Core.SETTINGS_KEY) {
+      if (dirty && !persist(false)) return;
       settings = loadSettings();
       render();
     }
