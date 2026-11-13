@@ -1,44 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <title>Current Work Day Scheduler</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f5">
+  <meta name="description" content="Daymark is a calm, private daily planner. Map out your hours and keep your plans saved on this device.">
+  <title>Daymark — Make time for what matters</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2323323c'/%3E%3Cpath d='M18 34l10 10 19-24' fill='none' stroke='%23c9e486' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script defer src="assets/js/core.js"></script>
+  <script defer src="assets/js/script.js"></script>
 </head>
-
 <body>
-  <header class="p-5 mb-4 border-5 border-bottom border-dark text-center">
-    <h1 class="display-3">Work Day Scheduler</h1>
-    <p class="lead">A simple calendar app for scheduling your work day</p>
-    <p id="currentDay" class="lead"></p>
-  </header>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Daymark home">
+        <span class="brand-symbol" aria-hidden="true">
+          <svg viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="10" fill="currentColor"/><path d="m9 18 6 6L26 11" stroke="#D6EC9D" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>daymark<span class="brand-period">.</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="privacy-pill"><span class="privacy-dot"></span> Private by design</span>
+        <span class="top-divider" aria-hidden="true"></span>
+        <span id="liveClock" class="live-clock" aria-live="off">--:--</span>
+      </div>
+    </header>
 
-  <div id="container" class="container-lg px-5">
-    <template id="hour-row-template">
-      <form id="hour-id" class="task-form">
-        <section class="row time-block">
-          <div id="hour-display" class="col-2 col-md-1 hour text-center py-3"></div>
-          <textarea class="col-8 col-md-10 description" rows="3" name="description-input"></textarea>
-          <button class="btn saveBtn col-2 col-md-1" aria-label="save">
-            <i class="fas fa-save" aria-hidden="true"></i>
-          </button>
-        </section>
-      </form>
-    </template>
+    <main class="shell">
+      <section class="hero" aria-labelledby="pageTitle">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> YOUR DAILY WORKSPACE</div>
+          <h1 id="pageTitle">Make time for<br><em>what matters.</em></h1>
+          <p>A little structure goes a long way. Plan your hours, find your focus, and make today count.</p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-circle art-circle-one"></div>
+          <div class="art-circle art-circle-two"></div>
+          <div class="art-paper art-paper-back"><span></span><span></span><span></span></div>
+          <div class="art-paper art-paper-front">
+            <div class="art-paper-header"><i></i><i></i><i></i></div>
+            <div class="art-paper-row"><b>09</b><span></span><strong>✓</strong></div>
+            <div class="art-paper-row"><b>10</b><span></span><strong>✓</strong></div>
+            <div class="art-paper-row"><b>11</b><span></span></div>
+            <div class="art-paper-row"><b>12</b><span></span></div>
+          </div>
+          <div class="art-sparkle">✳</div>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Daily planner">
+        <div class="workspace-header">
+          <div class="date-heading">
+            <span class="section-overline">YOUR SCHEDULE</span>
+            <h2 id="heroDate">Friday, November 13</h2>
+            <p id="heroSubtitle">A fresh day, a fresh start.</p>
+          </div>
+          <div class="date-toolbar" aria-label="Choose a schedule date">
+            <button id="previousDay" class="nav-arrow" type="button" aria-label="Previous day" title="Previous day">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <label class="date-picker-wrap" for="dayPicker">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7 3v4M17 3v4M3 10h18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+              <input id="dayPicker" type="date" aria-label="View another date">
+            </label>
+            <button id="nextDay" class="nav-arrow" type="button" aria-label="Next day" title="Next day">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button id="todayButton" class="today-button" type="button">Today</button>
+          </div>
+        </div>
+
+        <div class="workspace-grid">
+          <aside class="sidebar" aria-label="Daily overview and preferences">
+            <section class="panel week-panel">
+              <div class="panel-head">
+                <h3>This week</h3>
+                <span id="weekLabel" class="panel-hint"></span>
+              </div>
+              <div id="weekStrip" class="week-strip" aria-label="Dates this week"></div>
+            </section>
+
+            <section class="panel priority-panel">
+              <div class="panel-head">
+                <h3>Top priority</h3>
+                <span class="tiny-star" aria-hidden="true">✳</span>
+              </div>
+              <p class="panel-description">If you do one thing today, make it this.</p>
+              <label for="priorityInput" class="sr-only">Top priority for selected day</label>
+              <textarea id="priorityInput" rows="3" maxlength="500" placeholder="What's your one big thing?"></textarea>
+            </section>
+
+            <section class="panel settings-panel">
+              <div class="panel-head"><h3>Working hours</h3></div>
+              <p class="panel-description">Set the hours you'd like to see.</p>
+              <div class="hour-settings">
+                <label for="startHour">Start
+                  <select id="startHour" aria-label="Start of work day"></select>
+                </label>
+                <span class="hours-separator" aria-hidden="true">→</span>
+                <label for="endHour">End
+                  <select id="endHour" aria-label="End of work day"></select>
+                </label>
+              </div>
+              <p class="settings-footnote">Your hours apply to every date. Entries outside these hours are kept.</p>
+            </section>
+
+            <section class="panel notes-panel">
+              <div class="panel-head"><h3>Little reminders</h3></div>
+              <label class="sr-only" for="noteInput">Notes for selected day</label>
+              <textarea id="noteInput" rows="5" maxlength="3000" placeholder="A thought, a reminder, or a little win worth remembering..."></textarea>
+            </section>
+
+            <div class="local-note">
+              <span class="local-note-icon" aria-hidden="true">✦</span>
+              <p><strong>Your plans stay yours.</strong> Everything is saved in this browser on this device. No account needed.</p>
+            </div>
+          </aside>
+
+          <section class="planner-content" aria-label="Hourly schedule">
+            <div class="metrics" aria-label="Planning overview">
+              <div class="metric-card metric-card-dark">
+                <div class="metric-top"><span>Hours planned</span><span class="metric-decoration">↗</span></div>
+                <div class="metric-main"><strong id="plannedCount">0</strong><span>blocks filled</span></div>
+                <div class="mini-progress"><span id="coverageBar"></span></div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-top"><span>Room to breathe</span><span class="metric-decoration">◌</span></div>
+                <div class="metric-main"><strong id="freeCount">9</strong><span>open blocks</span></div>
+                <p class="metric-foot">Space for the unexpected.</p>
+              </div>
+              <div class="metric-card">
+                <div class="metric-top"><span>Day mapped out</span><span class="metric-decoration">✳</span></div>
+                <div class="metric-main"><strong id="coverageCount">0%</strong></div>
+                <p id="summaryLabel" class="metric-foot">A blank canvas, for now.</p>
+              </div>
+            </div>
+
+            <div class="timeline-header">
+              <div>
+                <div class="section-overline">HOUR BY HOUR</div>
+                <h3 id="plannerTitle">Today's timeline</h3>
+                <p id="plannerMeta">Give each hour a purpose, or leave room to improvise.</p>
+              </div>
+              <div class="timeline-actions">
+                <span id="saveStatus" class="save-status" role="status" aria-live="polite"><span class="save-status-dot"></span> Ready</span>
+                <button id="exportDay" class="text-action" type="button" title="Download a text copy of this day">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Export
+                </button>
+              </div>
+            </div>
+
+            <div id="timeline" class="timeline" aria-label="Editable hourly time blocks"></div>
+
+            <div class="timeline-footer">
+              <div class="footer-tip"><span aria-hidden="true">✦</span><span>Small steps, meaningful progress. Your day doesn't have to be perfect.</span></div>
+              <button id="clearDay" class="clear-button" type="button">Clear this day</button>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>daymark<span class="brand-period">.</span></span><span>Made for days that matter.</span></footer>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+  <template id="slotTemplate">
+    <article class="time-slot" data-hour="" data-state="future">
+      <div class="slot-time"><span class="slot-hour"></span><span class="slot-suffix"></span></div>
+      <div class="slot-card">
+        <div class="slot-card-top"><span class="slot-indicator"><i></i><span class="slot-state">Upcoming</span></span><span class="slot-length">60 min</span></div>
+        <label class="sr-only slot-label"></label>
+        <textarea class="slot-input" maxlength="5000" rows="2" placeholder="Add a plan for this hour..."></textarea>
+        <div class="slot-card-bottom">
+          <span class="slot-hint">Click to add a task or note</span>
+          <div class="slot-buttons">
+            <button class="slot-clear" type="button" data-action="clear" aria-label="Clear this hour" title="Clear this hour">Clear</button>
+            <button class="slot-save" type="button" data-action="save" aria-label="Save this hour" title="Save this hour">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4h12l3 3v13H4V4h1Zm3 0v6h8V4M7 20v-7h10v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </template>
 
-  <script src="assets/js/script.js"></script>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden>
+    <span id="toastText"></span>
+    <button id="undoButton" type="button" hidden>Undo</button>
+    <button id="dismissToast" type="button" aria-label="Dismiss notification">×</button>
+  </div>
 </body>
-
 </html>

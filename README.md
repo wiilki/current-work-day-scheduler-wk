@@ -1,32 +1,60 @@
-# current-work-day-scheduler-wk
+# Daymark — Daily Work Planner
 
-## Description
+A redesigned, dependency-free daily work scheduler that runs entirely in your browser. Daymark is a modern replacement for the original **Current Work Day Scheduler** bootcamp project.
 
-This is a work day planner for the current day! I created this project to showcase the various Javasciript skills I've learned during camp thus far.
+## Open the planner
 
-The most challenging part of this project was the use of DOM manipulation. I probably spent about 90% of my time trying to duplicate the body of HTML using Javascript. Also, my lack of ability to recognize differences between methods, selectors, values made this challenge much more difficult than it could have been.
+**Live site (GitHub Pages):** https://wiilki.github.io/current-work-day-scheduler-wk/
 
-Once I was finally able to duplicate the HTML in my JS, the rest of the project wasn't too bad. I was able to add the event listener fairly easy. Figuring out how to get the tasks to store to local storage correctly and finding the correct syntax to compare dayJS elements were a litle tricky. 
+If Pages has not been enabled yet, choose **Settings → Pages → Build and deployment → Deploy from a branch → main / (root)** in this repository.
 
-Although I spent more time planning ahead for this project, it did not prepare me for the amount of syntax issues I came accross. I spent hours re-writing and re-organinizing single parts of my code only to find the simplest solutions. I tend want to look at the bigger picture, but I learned from this project that taking it one small piece of code at a time would likely save me hours of testing and re-writing in the future.
+You can also open `index.html` directly in a modern browser. No server, account, or API key is required.
 
-This project was tough but I enjoyed it very much.
-Enjoy!
+## Features
 
-## Installation
+- **Hourly time blocks** with live past / current / future indicators, refreshed every 30 seconds.
+- **Reliable save buttons** on every block, plus auto-save while you type, on blur, and on page exit.
+- **Dates are independent**: switch days with the arrows, week picker, or native calendar.
+- **Local persistence**: plans, one top priority, and daily notes are stored per date in `localStorage`.
+- **Adjustable work hours** (6 AM–12 PM start and 1 PM–10 PM end). Hidden hours remain stored.
+- **Planning overview** showing filled and free hours.
+- **Export** the selected day to a plain text file.
+- **Clear one block** or an entire day with an undo action.
+- **Legacy migration**: imports old `current-tasks` entries into the corresponding 9 AM–5 PM hours the first time you open today's planner.
+- **Responsive and keyboard friendly** without Bootstrap, jQuery, Day.js, or external font/CDN dependencies.
 
- * To deploy application, go to [My Github Project](https://wiilki.github.io/current-work-day-scheduler-wk/)
+### Where are my entries saved?
 
-## Usage
+Only in the browser and device where you entered them. Changing devices, clearing browser storage, or opening a private browsing session will not sync your plans. Use **Export** to keep a text copy. If your browser blocks storage or reaches its storage limit, Daymark will show an error rather than pretend the changes saved.
 
- * Enter your scheduled task in corresponding hour box
- * Click save button on right
- * Tasks should store to local storage
- * Tasks should render back to corresponding hour box
- * Color of box should change depending on current hour
+### Keyboard shortcut
 
-![Screenshot](assets/images/screenshot.png)
+**Cmd+S** (Mac) or **Ctrl+S** (Windows/Linux) saves the selected day.
+
+## Development and tests
+
+The application itself has **zero runtime dependencies**. Node.js is only needed to run tests.
+
+```bash
+npm install
+npm test
+npm run check
+```
+
+Tests cover local-date and daylight-saving behavior, data normalization, legacy migration, hourly highlighting, storage, date navigation, and save/undo behavior.
+
+## Project structure
+
+- `index.html` — accessible application layout and slot template
+- `assets/css/style.css` — responsive styling and print view
+- `assets/js/core.js` — pure planner/date/storage helpers (also usable from Node tests)
+- `assets/js/script.js` — accessible interface interactions and persistence
+- `tests/` — unit and interface smoke tests
+
+## Privacy
+
+Daymark does not send plans to a server. It uses browser local storage and does not include advertising, analytics, tracking code, or external JavaScript services.
 
 ## Credits
 
-* [Jquery](https://code.jquery.com/jquery-3.5.1.min.js)
+Originally created as a JavaScript work-day scheduler learning project by the repository author. Redesigned as Daymark while retaining the original local-first purpose.
