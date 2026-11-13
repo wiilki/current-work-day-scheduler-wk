@@ -1,0 +1,13 @@
+{
+  "name": "daymark-workday-planner",
+  "version": "2.0.0",
+  "private": true,
+  "description": "An offline-friendly, local-first daily scheduler",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check assets/js/core.js && node --check assets/js/script.js"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}
